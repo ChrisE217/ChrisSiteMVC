@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using chrissiteMVC.Data;
 using chrissiteMVC.Models;
 using Microsoft.AspNetCore.Authorization;
-using System.Diagnostics;
 
 namespace chrissiteMVC.Controllers
 {
@@ -24,7 +23,25 @@ namespace chrissiteMVC.Controllers
         // GET: Index
         public async Task<IActionResult> Index()
         {
-            return View(await _context.IndexDataModel.ToListAsync());
+            return View(await _context.IndexDataModel.FirstAsync());
+        }
+
+        // GET: Index/Details/5
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var indexDataModel = await _context.IndexDataModel
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (indexDataModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(indexDataModel);
         }
 
         // GET: Index/Create
@@ -40,7 +57,7 @@ namespace chrissiteMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
+        public async Task<IActionResult> Create([Bind("Id,Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
         {
             if (ModelState.IsValid)
             {
@@ -74,9 +91,9 @@ namespace chrissiteMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
         {
-            if (id != indexDataModel.Name)
+            if (id != indexDataModel.Id)
             {
                 return NotFound();
             }
@@ -90,7 +107,7 @@ namespace chrissiteMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!IndexDataModelExists(indexDataModel.Name))
+                    if (!IndexDataModelExists(indexDataModel.Id))
                     {
                         return NotFound();
                     }
@@ -114,7 +131,7 @@ namespace chrissiteMVC.Controllers
             }
 
             var indexDataModel = await _context.IndexDataModel
-                .FirstOrDefaultAsync(m => m.Name == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (indexDataModel == null)
             {
                 return NotFound();
@@ -137,13 +154,7 @@ namespace chrissiteMVC.Controllers
 
         private bool IndexDataModelExists(string id)
         {
-            return _context.IndexDataModel.Any(e => e.Name == id);
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return _context.IndexDataModel.Any(e => e.Id == id);
         }
     }
 }

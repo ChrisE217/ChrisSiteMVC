@@ -8,7 +8,7 @@ namespace chrissiteMVC.Models
 {
     public class IndexDataModel
     {
-        [Key]
+        public string Id { get; set; }
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace chrissiteMVC.Models
         [StringLength(255)]
         public string Description { get; set; }
         [Required]
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; } //change to byte[]
         [Required]
         [StringLength(50)]
         public string Email { get; set; }
@@ -27,6 +27,6 @@ namespace chrissiteMVC.Models
         [StringLength(15)]
         public string PhoneNo { get; set; }
         [Required]
-        public byte[] Cv { get; set; }
+        public string Cv { get; set; } //change to byte
     }
 }

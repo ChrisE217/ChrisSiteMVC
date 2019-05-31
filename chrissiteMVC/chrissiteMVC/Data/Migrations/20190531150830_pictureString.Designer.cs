@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using chrissiteMVC.Data;
 
 namespace chrissiteMVC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190531150830_pictureString")]
+    partial class pictureString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,8 +47,8 @@ namespace chrissiteMVC.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3e804557-5de8-4b4a-99ec-997f1f04e88e",
-                            ConcurrencyStamp = "6b15b085-d6aa-4850-b996-ed6c63824f4d",
+                            Id = "bfec1c58-dd36-4fd4-a67d-17ba1bb687af",
+                            ConcurrencyStamp = "4d5d4973-b615-4855-9e4c-f5a4a0fc1cc5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -195,8 +197,9 @@ namespace chrissiteMVC.Data.Migrations
 
             modelBuilder.Entity("chrissiteMVC.Models.IndexDataModel", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100);
 
                     b.Property<string>("Cv")
                         .IsRequired();
@@ -209,10 +212,6 @@ namespace chrissiteMVC.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.Property<string>("Occupation")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -224,7 +223,7 @@ namespace chrissiteMVC.Data.Migrations
                     b.Property<string>("Picture")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("IndexDataModel");
                 });

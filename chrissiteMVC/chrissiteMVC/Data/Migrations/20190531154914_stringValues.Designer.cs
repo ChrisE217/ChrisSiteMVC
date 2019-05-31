@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using chrissiteMVC.Data;
 
 namespace chrissiteMVC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190531154914_stringValues")]
+    partial class stringValues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,8 +47,8 @@ namespace chrissiteMVC.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3e804557-5de8-4b4a-99ec-997f1f04e88e",
-                            ConcurrencyStamp = "6b15b085-d6aa-4850-b996-ed6c63824f4d",
+                            Id = "af31359e-3e76-4705-b13c-18b9bc5f49ea",
+                            ConcurrencyStamp = "b3f907e6-7d60-4ce5-ad99-c2d54c407ddd",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
