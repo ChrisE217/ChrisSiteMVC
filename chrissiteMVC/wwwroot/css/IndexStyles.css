@@ -1,0 +1,90 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#projects {
+    text-decoration: line-through;
+}
+
+.center-align {
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 15vh
+}
+
+.name {
+    padding-top: 30px;
+    font: bold;
+    font-size: xx-large;
+}
+
+.occupation {
+    font-size: large;
+    padding-bottom: 30px;
+}
+
+.link {
+    color: #525459;
+    padding: 10px;
+    text-decoration: underline;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.picture {
+    height: 200px;
+    width: 200px;
+}
+
+.hidden {
+    display: none;
+}
+
+.other-links-group {
+    padding: 30px;
+    text-align: center;
+}
+
+.site-link {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.about-group {
+    padding: 30px;
+    text-align: center;
+}
+
+.contacts-group {
+    padding: 30px;
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5vh
+}
+
+.menu {
+    padding: 100px;
+    padding-top: 5vh;
+}
+
+.project-img {
+    width: 100%;
+    -webkit-box-shadow: 0px 8px 19px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 8px 19px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 8px 19px 0px rgba(0,0,0,0.75);
+}
+
+.img-pad {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
