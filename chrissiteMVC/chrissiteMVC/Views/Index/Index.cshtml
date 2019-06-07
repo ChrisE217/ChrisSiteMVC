@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/IndexStyles.css">
-    <link rel="icon" href="resources/pic.jpg" class="img-circle">
+    <link rel="icon" href="@Model.Picture" class="img-circle">
     <title>Chris Ewart</title>
 </head>
 
@@ -28,29 +28,26 @@
             <div class="col-lg-6">
                 <img src="@Model.Picture" class="img-circle img-responsive picture hidden fade-in" />
                 <div class="name fade-in hidden">@Model.Name</div>
-                <div class="occupation fade-in hidden">Student/Developer</div>
-                <a id="cv" class="hidden fade-in link" target="_blank" href="resources/CV.pdf">CV</a>
+                <div class="occupation fade-in hidden">@Model.Occupation</div>
+                <a id="cv" class="hidden fade-in link" target="_blank" href="@Model.Cv">CV</a>
                 <!-- <a id="projects" class="hidden fade-in link" href="javascript:void(0)">Projects</a> -->
                 <a id="contacts" class="hidden fade-in link" href="javascript:contacts()">Contacts</a>
                 <a id="about" class="hidden fade-in link" href="javascript:about()">About</a>
                 <a id="other-links" class="hidden fade-in link" href="javascript:otherLinks()">Other Links</a>
                 <!--Hidden Groups-->
                 <div class="contacts-group hidden">
-                    <a class="site-link" href="mailto:chris.ewart1999@gmail.com">
+                    <a class="site-link" href="mailto:{@Model.Email}">
                         <i class="fas fa-envelope"
-                           style="color: black"></i> chris.ewart1999@gmail.com
+                           style="color: black"></i> @Model.Email
                     </a><br>
                     <p class="site-link">
                         <i class="fas fa-phone"
-                           style="color: black"></i> +44 (0)74 7039 9913
+                           style="color: black"></i> @Model.PhoneNo
                     </p>
                 </div>
                 <div class="about-group hidden">
                     <p>
-                        Hi, my name is Chris Ewart I am a computer science student at Queens University Belfast. I am a
-                        passionate developer and try and keep up with all new technologies. I mainly develop in .NET,
-                        primarily because that is what I first learned but i'm constantly reading about or learning to
-                        use other stacks/frameworks.
+                        @Model.Description
                     </p>
                 </div>
                 <div class="other-links-group hidden">

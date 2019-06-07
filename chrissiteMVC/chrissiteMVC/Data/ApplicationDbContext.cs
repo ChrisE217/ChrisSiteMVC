@@ -21,7 +21,21 @@ namespace chrissiteMVC.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole {
+                Name = "Admin",
+                NormalizedName = "Admin".ToUpper()
+            });
+            modelBuilder.Entity<IndexDataModel>().HasData(new IndexDataModel
+            {
+                Id = "1",
+                Name = "Name",
+                Occupation = "Occupation",
+                Description = "Description",
+                Picture = "pic",
+                Email = "youremail@email.com",
+                PhoneNo = "(phone number)",
+                Cv = "cv"
+            });
         }
         public DbSet<chrissiteMVC.Models.IndexDataModel> IndexDataModel { get; set; }
         public DbSet<chrissiteMVC.Models.ProjectDataModel> ProjectDataModel { get; set; }

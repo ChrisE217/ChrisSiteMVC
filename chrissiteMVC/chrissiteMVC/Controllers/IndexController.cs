@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using chrissiteMVC.Data;
 using chrissiteMVC.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace chrissiteMVC.Controllers
 {
@@ -26,16 +27,12 @@ namespace chrissiteMVC.Controllers
             return View(await _context.IndexDataModel.FirstAsync());
         }
 
-        // GET: Index/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: Index/Details
+        public async Task<IActionResult> Details()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var indexDataModel = await _context.IndexDataModel
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == "1");
             if (indexDataModel == null)
             {
                 return NotFound();
@@ -44,40 +41,11 @@ namespace chrissiteMVC.Controllers
             return View(indexDataModel);
         }
 
-        // GET: Index/Create
+        // GET: Index/Edit
         [Authorize(Roles = "Admin")]
-        public IActionResult Create()
+        public async Task<IActionResult> Edit()
         {
-            return View();
-        }
-
-        // POST: Index/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(indexDataModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(indexDataModel);
-        }
-
-        // GET: Index/Edit/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var indexDataModel = await _context.IndexDataModel.FindAsync(id);
+            var indexDataModel = await _context.IndexDataModel.FindAsync("1");
             if (indexDataModel == null)
             {
                 return NotFound();
@@ -85,19 +53,14 @@ namespace chrissiteMVC.Controllers
             return View(indexDataModel);
         }
 
-        // POST: Index/Edit/5
+        // POST: Index/Edit
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
+        public async Task<IActionResult> Edit([Bind("Id,Name,Occupation,Description,Picture,Email,PhoneNo,Cv")] IndexDataModel indexDataModel)
         {
-            if (id != indexDataModel.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -121,40 +84,16 @@ namespace chrissiteMVC.Controllers
             return View(indexDataModel);
         }
 
-        // GET: Index/Delete/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var indexDataModel = await _context.IndexDataModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (indexDataModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(indexDataModel);
-        }
-
-        // POST: Index/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var indexDataModel = await _context.IndexDataModel.FindAsync(id);
-            _context.IndexDataModel.Remove(indexDataModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool IndexDataModelExists(string id)
         {
             return _context.IndexDataModel.Any(e => e.Id == id);
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
